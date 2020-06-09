@@ -11,7 +11,7 @@ body{
   width: 100px;
   height: 200px;
   position: absolute;
-  top: 70vh; /* 100vh makes it disappear less will make it show up */
+  top: 100vh; /* 100vh makes it disappear less will make it show up */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
