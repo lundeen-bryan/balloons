@@ -11,7 +11,7 @@ body{
   width: 100px;
   height: 200px;
   position: absolute;
-  top: 100vh; /* 100vh makes it disappear less will make it show up */
+  top: 70vh; /* 100vh makes it disappear less will make it show up */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -37,14 +37,15 @@ body{
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.6);
-  display: flex;
+  /* display: flex; */
+  display: none;
   justify-content: center;
   align-items: center;
   z-index: 1000;
   position: relative;
 }
 
-.win{
+.lose{
   display: none;
 }
 .score-block{
