@@ -8,6 +8,7 @@ let total = 100;
 let currentBalloon = 0;
 let gameOver = false;
 let totalShadow = document.querySelector(".total-shadow");
+let startBtn = document.querySelector(".start-game-button");
 
 function createBalloon() {
   let div = document.createElement("div");
@@ -64,7 +65,6 @@ function updateScore() {
 function startGame() {
   restartGame();
   let timeout = 0;
-
   let loop = setInterval(function () {
     timeout = Math.floor(Math.random() * 600 - 100);
     if (!gameOver && num !== total) {
@@ -115,4 +115,8 @@ document.querySelector(".cancel").addEventListener("click", function () {
   totalShadow.style.display = "none";
 });
 
-startGame();
+startBtn.addEventListener("click", function () {
+  startGame();
+  document.querySelector(".bg-music").play();
+  document.querySelector(".start-game-window").style.display = "none";
+});
