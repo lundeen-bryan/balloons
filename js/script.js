@@ -4,7 +4,7 @@ let windowHeight = window.innerHeight;
 let body = document.body;
 let scores = document.querySelectorAll(".score");
 let num = 0;
-let total = 10;
+let total = 100;
 let currentBalloon = 0;
 let gameOver = false;
 let totalShadow = document.querySelector(".total-shadow");
@@ -24,7 +24,8 @@ function createBalloon() {
 
 function animateBalloon(elem) {
   let pos = 0;
-  let interval = setInterval(frame, 10);
+  let random = Math.floor(Math.random() * 6 - 3);
+  let interval = setInterval(frame, 12 - Math.floor(num / 10) + random);
 
   function frame() {
     if (
@@ -45,6 +46,13 @@ function deleteBalloon(elem) {
   elem.remove();
   num++;
   updateScore();
+  playBallSound();
+}
+
+function playBallSound() {
+  let audio = document.createElement("audio");
+  audio.src = "sounds/pop.mp3";
+  audio.play();
 }
 
 function updateScore() {
@@ -54,7 +62,11 @@ function updateScore() {
 }
 
 function startGame() {
+  restartGame();
+  let timeout = 0;
+
   let loop = setInterval(function () {
+    timeout = Math.floor(Math.random() * 600 - 100);
     if (!gameOver && num !== total) {
       createBalloon();
     } else if (num !== total) {
@@ -66,7 +78,7 @@ function startGame() {
       totalShadow.style.display = "flex";
       totalShadow.querySelector(".win").style.display = "block";
     }
-  }, 800);
+  }, 800 + timeout);
 }
 /* 
  event delegation 
@@ -76,10 +88,31 @@ function startGame() {
  below it will only log an event if it is of class
  balloon
 */
+
+function restartGame() {
+  let forRemoving = document.querySelectorAll(".balloon");
+  for (let i = 0; i < forRemoving.length; i++) {
+    /* deleteBalloon(event.target); */
+    forRemoving[i].remove();
+  }
+  gameOver = false;
+  num = 0;
+  updateScore();
+}
 document.addEventListener("click", function (event) {
   if (event.target.classList.contains("balloon")) {
     deleteBalloon(event.target);
   }
+});
+
+document.querySelector(".restart").addEventListener("click", function () {
+  totalShadow.style.display = "none";
+  totalShadow.querySelector(".win").style.display = "none";
+  totalShadow.querySelector(".lose").style.display = "none";
+  startGame();
+});
+document.querySelector(".cancel").addEventListener("click", function () {
+  totalShadow.style.display = "none";
 });
 
 startGame();
