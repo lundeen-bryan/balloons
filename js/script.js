@@ -73,6 +73,8 @@ function startGame() {
       clearInterval(loop);
       totalShadow.style.display = "flex";
       totalShadow.querySelector(".lose").style.display = "block";
+      document.querySelector(".bg-music").src = "";
+      document.querySelector(".loseHorn").play();
     } else {
       clearInterval(loop);
       totalShadow.style.display = "flex";
