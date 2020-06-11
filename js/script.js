@@ -92,6 +92,8 @@ function startGame() {
 */
 
 function restartGame() {
+  document.querySelector(".bg-music").src = "./sounds/bg-music.mp3";
+  document.querySelector(".bg-music").play();
   let forRemoving = document.querySelectorAll(".balloon");
   for (let i = 0; i < forRemoving.length; i++) {
     /* deleteBalloon(event.target); */
